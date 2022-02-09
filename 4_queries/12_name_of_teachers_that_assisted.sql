@@ -7,4 +7,4 @@ ON student_id = students.id
 JOIN cohorts
 ON cohort_id = cohorts.id
 WHERE cohorts.name = 'JUL02'
-ORDER BY teachers;
+ORDER BY teachers.name;
