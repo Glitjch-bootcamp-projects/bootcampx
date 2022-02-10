@@ -8,7 +8,7 @@ const pool = new Pool({
 });
 
 const cohort = `%${process.argv[2]}%`;
-const limit = process.argv[3];
+const limit = process.argv[3] || 5;
 const queryString = `
 SELECT students.id as student_id, students.name as name, cohorts.name as cohort
 FROM students
@@ -18,6 +18,9 @@ WHERE cohorts.name LIKE $1
 LIMIT $2;
 `;
 const values = [cohort, limit];
+// can me written this way too with % here instead of around process.argv[2]
+// const values = [`%${cohortName}%`, limit];
+
 pool.query(queryString, values)
 .then(res => {
   console.log(res.rows);
